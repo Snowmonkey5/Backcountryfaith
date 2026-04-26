@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BackCountryFaith Tech</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+html, body{
+  margin:0;
+  height:100%;
+  font-family:'Orbitron', sans-serif;
+  color:white;
+  background:black;
+}
+
+/* FULL BACKGROUND */
+body{
+  background: radial-gradient(circle at center, #001f1f, #000);
+  background-attachment: fixed;
+}
+
+/* MAIN */
+#main{
+  min-height:100vh;
+  padding:20px;
+  text-align:center;
+}
+
+.product{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:40px;
+}
+
+/* CARD */
+.card{
+  width:320px;
+  background:#111;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 0 25px #00ffcc55;
+  transition:0.2s;
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  cursor:pointer;
+}
+
+/* INFO */
+.info{
+  max-width:400px;
+  text-align:left;
+}
+
+.price{
+  font-size:26px;
+  color:#00ffcc;
+  margin-top:10px;
+}
+
+/* SELLER */
+.seller{
+  margin-top:15px;
+  background:#111;
+  padding:12px;
+  border-radius:10px;
+}
+
+/* BUTTON */
+.buy-btn{
+  margin-top:20px;
+  padding:15px;
+  width:100%;
+  border:none;
+  border-radius:10px;
+  background:#00ffcc;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* VIEWER */
+#viewer{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+#viewer img{
+  max-width:90%;
+}
+</style>
+</head>
+
+<body>
+
+<div id="main">
+
+<h1>BackCountryFaith Tech</h1>
+
+<div class="product">
+
+<!-- IMAGE -->
+<div>
+  <div class="card" id="card">
+    <img id="mainImg" src="https://i.ebayimg.com/images/g/Q8gAAeSwPZBp7Y7H/s-l1600.jpg">
+  </div>
+</div>
+
+<!-- INFO -->
+<div class="info">
+
+<h2>24 Inch Computer Gaming Monitor 165Hz IPS 1ms FHD HDMI DP FreeSync Ultra Thin</h2>
+
+<div class="price">$99.25</div>
+
+<div class="seller">
+  <strong>Seller:</strong> Backcountryfaith
+  <br><strong>100%</strong> positive feedback (345)
+</div>
+
+<button class="buy-btn" onclick="buyNow()">Buy Now</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- VIEWER -->
+<div id="viewer" onclick="closeViewer()">
+  <img id="viewerImg">
+</div>
+
+<script>
+// BUY
+function buyNow(){
+  window.open("https://www.ebay.com/itm/236779590858","_blank");
+}
+
+// FULLSCREEN
+mainImg.onclick = ()=>{
+  viewer.style.display="flex";
+  viewerImg.src = mainImg.src;
+}
+
+function closeViewer(){
+  viewer.style.display="none";
+}
+
+// 3D EFFECT
+const card=document.getElementById("card");
+
+card.addEventListener("mousemove",e=>{
+  let r=card.getBoundingClientRect();
+  let x=e.clientX-r.left;
+  let y=e.clientY-r.top;
+
+  card.style.transform=`rotateX(${(y/r.height-0.5)*15}deg)
+                        rotateY(${(x/r.width-0.5)*-15}deg)`;
+});
+
+card.addEventListener("mouseleave",()=>{
+  card.style.transform="rotateX(0) rotateY(0)";
+});
+</script>
+
+</body>
+</html>
